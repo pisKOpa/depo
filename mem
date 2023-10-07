@@ -1,0 +1,34 @@
+import discord,os,random
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'{bot.user} olarak giriş yaptık')
+
+@bot.command()
+async def merhaba(ctx):
+    await ctx.send(f'Merhaba {bot.user}! Ben bir botum!')
+
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+@bot.command()
+async def mem(ctx):
+    liste = os.listdir('m1_l4\meme_photos')
+    img_name=random.choice(liste)
+    with open(f'm1_l4\meme_photos\{img_name}', 'rb') as f:
+            # print(os.listdir('meme_photos'))
+            picture = discord.File(f)
+        # Dönüştürülen Discord kütüphane dosyasını bu değişkende saklayalım!
+   # Daha sonra bu dosyayı bir parametre olarak gönderebiliriz!
+    await ctx.send(file=picture)
+
+
+
+bot.run("bot tokeni indir")
