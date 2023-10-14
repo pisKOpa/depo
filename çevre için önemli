@@ -1,0 +1,36 @@
+import discord,os,random
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.command()
+async def merhaba(ctx):
+    await ctx.send('your text')
+
+
+@bot.command()
+async def crime(ctx):
+    await ctx.send('your text')
+
+
+
+@bot.command()
+async def true_crime(ctx):
+
+    video_list = ["video link", "video link","video link", "video link" ]
+    video_name=random.choice(video_list)
+    await ctx.send(video_name)
+
+
+    # liste = os.listdir('m1_l4\onemli')
+    # img_name=random.choice(liste)
+    # with open(f'm1_l4\onemli\{img_name}', 'rb') as f:
+    #         # print(os.listdir('meme_photos'))
+    #         picture = discord.File(f)
+            
+    # await ctx.send(file=picture)
+
+bot.run("token here")
